@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jokes-client-deployement
+  labels:
+    name: jokes-client
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jokes-client
+  template:
+    metadata:
+      labels:
+        name: jokes-client
+    spec:
+      containers:
+        - name: jokes-client-container
+          image: phidinh/jokes-client
+          ports:
+            - containerPort: 3000

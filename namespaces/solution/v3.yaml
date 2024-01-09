@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-app
+  labels:
+    app: mywebapp
+    tier: frontend
+spec:
+  ports:
+    - port: 5000
+      protocol: TCP
+      name: flask
+  selector:
+    app: mywebapp
+    tier: frontend
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-app-config
+data:
+  BG_COLOR: "blue"
+  TEXT_COLOR: "white"
+  TEXT: "Customized with a configmap"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  labels:
+    app: mywebapp
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mywebapp
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: mywebapp
+        tier: frontend
+    spec: # Pod spec
+      containers:
+        - name: mycontainer
+          image: phidinh/simple-app
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: hello-app-config
+          # resources:
+          #   requests:
+          #     memory: "16Mi"c
+          #     cpu: "50m"
+          #   limits:
+          #     memory: "128Mi"
+          #     cpu: "100m"

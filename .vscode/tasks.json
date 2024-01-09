@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "bridge-to-kubernetes.resource",
+      "type": "bridge-to-kubernetes.resource",
+      "resource": "jokes-api-service",
+      "resourceType": "service",
+      "ports": [5000],
+      "targetCluster": "docker-desktop",
+      "targetNamespace": "default",
+      "useKubernetesServiceEnvironmentVariables": false,
+      "isolateAs": "phi.dinh-23c8",
+      "targetContainer": "jokes-api-container"
+    }
+  ]
+}

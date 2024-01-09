@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jokes-deployement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jokes-api
+  template:
+    metadata:
+      labels:
+        name: jokes-api
+    spec:
+      containers:
+        - name: jokes-api-container
+          image: phidinh/jokes-api:latest
+          ports:
+            - containerPort: 5000
+          # env:
+          #   - name: MONGO_URI
+          #     value: "mongodb://mongodb-cluser-ip-service:27017/mern_reservation_app"
+          envFrom:
+            - configMapRef:
+                name: jokes-api-config

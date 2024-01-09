@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs-k8s
+spec:
+  replicas: 1 # Corrected from "replica" to "replicas"
+  selector:
+    matchLabels:
+      app: nestjs-k8s
+  template:
+    metadata:
+      labels:
+        app: nestjs-k8s
+    spec:
+      containers:
+        - name: nestjs-k8s
+          image: tuanhta/nestjs-k8s
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: postgres
+            - name: DB_PORT
+              value: '5432'
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres123
+            - name: DB_DATABASE
+              value: taskmanagement

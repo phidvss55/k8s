@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-app
+  labels:
+    name: simple-app
+spec:
+  containers:
+    - name: container-name
+      image: phidinh/simple-app
+      ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-app-service
+spec:
+  selector:
+    name: simple-app
+  type: LoadBalancer
+  ports:
+    - port: 5000
+      targetPort: 5000
+      # nodePort: 30002
