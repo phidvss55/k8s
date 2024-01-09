@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: simple-app-deployment
+  name: simple-deployment
+  labels:
+    app: sample-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      name: simple-app
+      app: sample-app
   template:
     metadata:
       labels:
-        name: simple-app
+        app: sample-app
     spec:
       containers:
-        - name: simple-app
+        - name: simple-container
           image: phidinh/simple-app:latest
           ports:
             - containerPort: 5000
