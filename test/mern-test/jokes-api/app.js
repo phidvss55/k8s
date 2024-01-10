@@ -8,9 +8,9 @@ require("./JokeSchema");
 const jokeModel = mongoose.model("joke");
 
 async function main() {
-  const mongo = "mongodb://localhost:27017/mern_reversation_app";
+  // const mongo = "mongodb://localhost:27017/mern_reversation_app";
   await mongoose
-    .connect(`${mongo}`)
+    .connect(`${process.env.MONGO_URI}`)
     .then(() => {
       console.log("Connected to mongo yeahh");
     })

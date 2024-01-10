@@ -14,4 +14,4 @@ EXPOSE 5000
 
 RUN chown -R node /usr/src/app
 
-CMD ["npm", "run", "start"]
+CMD ["node", "app.js"]

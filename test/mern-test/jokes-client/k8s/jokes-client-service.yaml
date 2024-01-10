@@ -4,8 +4,8 @@ metadata:
   name: jokes-client-service
 spec:
   selector:
-    name: jokes-client
-  type: LoadBalancer
+    app: jokes-client
   ports:
     - port: 3000
       targetPort: 3000
+  type: LoadBalancer

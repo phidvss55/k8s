@@ -3,17 +3,17 @@ kind: Deployment
 metadata:
   name: jokes-client-deployement
   labels:
-    name: jokes-client
+    app: jokes-client
     tier: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: jokes-client
+      app: jokes-client
   template:
     metadata:
       labels:
-        name: jokes-client
+        app: jokes-client
     spec:
       containers:
         - name: jokes-client-container

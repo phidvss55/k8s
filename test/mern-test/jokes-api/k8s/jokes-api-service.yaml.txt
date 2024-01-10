@@ -4,8 +4,8 @@ metadata:
   name: jokes-api-service
 spec:
   selector:
-    app: jokes-api
+    name: jokes-api
+  type: LoadBalancer
   ports:
     - port: 5000
-      protocol: TCP
-  type: NodePort
+      targetPort: 5000
